@@ -1,0 +1,43 @@
+databases:
+  - name: foodiehub-postgres
+    databaseName: foodiehub
+    user: foodiehub
+    plan: basic-256mb
+
+services:
+  - type: web
+    name: foodiehub-backend
+    runtime: docker
+    plan: starter
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/restaurants
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_HOST
+        fromDatabase:
+          name: foodiehub-postgres
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: foodiehub-postgres
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: foodiehub-postgres
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: foodiehub-postgres
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: foodiehub-postgres
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION_MS
+        value: 86400000
+      - key: CORS_ALLOWED_ORIGIN_PATTERNS
+        value: https://*.vercel.app

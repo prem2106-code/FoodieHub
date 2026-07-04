@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-cream text-stone-800 font-body;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4A017;
+  border-radius: 999px;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-ember to-maroon text-white font-semibold px-6 py-3 rounded-full
+         shadow-soft transition-transform duration-200 hover:scale-105 hover:shadow-lg
+         disabled:opacity-50 disabled:hover:scale-100;
+}
+
+.btn-outline {
+  @apply border-2 border-maroon text-maroon font-semibold px-6 py-3 rounded-full
+         transition-colors duration-200 hover:bg-maroon hover:text-white;
+}
+
+.card {
+  @apply bg-white/70 backdrop-blur-md rounded-3xl shadow-soft border border-white/60;
+}
+
+.input-field {
+  @apply w-full px-4 py-3 rounded-xl border border-stone-200 bg-white/80 focus:outline-none
+         focus:ring-2 focus:ring-ember/50 transition;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
